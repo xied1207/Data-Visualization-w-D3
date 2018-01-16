@@ -1,0 +1,68 @@
+<html>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
+<script src="https://ils.unc.edu/~gotz/courses/js/p_value.js"></script>
+<script src="handson5_data.js"></script>
+<script src="handson5.js"></script><style>
+body {
+	font-family: sans-serif;
+}
+
+.plotbg {
+	fill: lightgray;
+	stroke: lightgray;
+	stroke-width: 4;
+}
+
+.quantile {
+	fill: white;
+	opacity: 0.5;
+}
+
+.dot {
+	fill: brown;
+}
+
+.label {
+	font-size: 8pt;
+}
+
+</style>
+<body>
+<h1>The Iris flower data set</h1>
+The Iris flower data set was introduced in 1936 by Sir Ronald Fisher
+and over the years has been used as a cononical dataset in many areas
+of analysis.  Read more about this dataset
+<a href="http://en.wikipedia.org/wiki/Iris_flower_data_set">on Wikipedia</a>.
+<p>
+The statistical analysis shown here assumes a <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a> as the null hypothesis.
+<p>
+<div style="width: 100%; overflow: hidden;">
+	<div id="significant" style="width: 45%; float: left;">
+		<h3>Statistically Significant (p&lt;0.01)</h3>
+	</div>
+	<div id="insignificant" style="margin-left: 50%; width: 45%;">
+		<h3>Not Significant</h3>
+	</div>
+</div>
+
+<script>
+
+// The iris dataset has four numerical dimensions.  Pull them out into individual arrays.
+var sepal_length = iris_data.map(function (d) { return d.sepal_length; });
+var sepal_width = iris_data.map(function (d) { return d.sepal_width; });
+var petal_length = iris_data.map(function (d) { return d.petal_length; });
+var petal_width = iris_data.map(function (d) { return d.petal_width; });
+
+// Now create 6 plots (one for each pair of dimensions).
+produceAndPositionScatterPlot(petal_length, petal_width,  "petal_length", "petal_width");
+produceAndPositionScatterPlot(sepal_length, petal_length, "sepal_length", "petal_length");
+produceAndPositionScatterPlot(sepal_length, petal_width,  "sepal_length", "petal_width");
+produceAndPositionScatterPlot(sepal_length, sepal_width,  "sepal_length", "sepal_width");
+produceAndPositionScatterPlot(sepal_width,  petal_length, "sepal_width",  "petal_length");
+produceAndPositionScatterPlot(sepal_width,  petal_width,  "sepal_width",  "petal_width");
+
+</script>
+
+</body>
+</html>
